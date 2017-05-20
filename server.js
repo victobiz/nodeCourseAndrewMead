@@ -2,6 +2,11 @@ const express = require('express');
 const hbs = require('hbs');
 const fs = require('fs');
 
+//set up port for heroku object that stores enviornment variables as key value pairs
+//the process.env gets the PORT flag in the enviornment variables if the port variable does not
+//exist it sets it to port 3000.
+const port = process.env.PORT || 3000;
+
 var app = express();
 
 hbs.registerPartials(__dirname + '/views/partials');
@@ -27,9 +32,9 @@ var log =(`${now}: ${req.method} ${req.url}`);
   next();
 });
 
-app.use((req,res, next) =>{
-  res.render('maintanance.hbs');
-});
+// app.use((req,res, next) =>{
+//   res.render('maintanance.hbs');
+// });
 hbs.registerHelper('getCurrentYear', () =>{
   return 'test';//new Date().getFullYear();
 });
@@ -75,4 +80,6 @@ app.get('/bad' , (req, res) => {
   })
 })
 
-app.listen(3000);
+app.listen(port, () => {
+console.log(`Sever is up on port ${port}`);
+});
