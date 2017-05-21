@@ -72,6 +72,13 @@ app.get('/home', (req, res) =>{
   })
 });
 
+app.get('/projects', (req, res) =>{
+  res.render('projects.hbs', {
+      pageTitle: 'Project Page',
+
+  })
+});
+
 //create a route at /bad  respond using response.send send back josn with error message
 //property then go to /bad make sure it shows up.
 app.get('/bad' , (req, res) => {
